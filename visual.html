@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kibana Data Visualization Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F4F4F4;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #50BCDF;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2em;
+        }
+        .iframe-container {
+            width: 80%;
+            margin-bottom: 2em;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+        .footer {
+            background-color: #50BCDF;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Kibana 데이터 시각화 - 타이타닉</h1>
+    </div>
+    <div class="container">
+        <div class="iframe-container">
+            <iframe src="http://localhost:5601/goto/b0293be401ac5383a1d08d06ae119b42" height="600" width="800"></iframe>
+        </div>
+    </div>
+    <div class="footer">
+        <p>© 2024 Your Company. All rights reserved.</p>
+    </div>
+</body>
+</html>
+
+
+
+

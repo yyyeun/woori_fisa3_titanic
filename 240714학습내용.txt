@@ -1,0 +1,5 @@
+학습내용
+
+1. mysql을 ubuntu에 설치
+    -mysql자체에 직접 sql문장
+    -host인 window에서 mysql
