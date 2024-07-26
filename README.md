@@ -7,15 +7,9 @@
   - [팀원](#raising_hand-팀원)
   - [실습환경](#실습환경)
   - [MySQL + ELK](#floppy_disk-mysql--elk)
-    - [MySQL DB-Connector 설치](#mysql-db-connector-설치)
-    - [Logstash 설정](#logstash-설정)
-    - [Logstash 실행](#logstash-실행)
   - [시각화](#bar_chart-시각화)
   - [트러블슈팅](#hammer-트러블슈팅)
-    - [Kibana 대시보드 공유](#kibana-대시보드-공유)
-    - [JDBC_driver 읽기 권한](#jdbc_driver-읽기-권한)
-    - [Timezone error](#timezone-error)
-    - [conf파일의 filter 충돌](#conf파일의-filter-충돌)
+  - [회고](#thought_balloon-회고)
       
 </details>
 
@@ -184,4 +178,15 @@ path.config : /etc/logstash/single_conf
 ```
 <br/>
 
-## 회고
+## :thought_balloon: 회고
+### 허예은
+<br/>
+
+### 조성현
+<br/>
+
+### 이현빈
+<br/>
+
+### 이승준
+<br/>
