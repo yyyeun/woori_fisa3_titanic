@@ -4,60 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kibana Data Visualization Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #F4F4F4;
-            margin: 0;
-            padding: 0;
-        }
-        .header {
-            background-color: #50BCDF;
-            color: white;
-            padding: 1em 0;
-            text-align: center;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 2em;
-        }
-        .iframe-container {
-            width: 80%;
-            margin-bottom: 2em;
-            border: 1px solid #ddd;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        iframe {
-            width: 100%;
-            height: 500px;
-            border: none;
-        }
-        .footer {
-            background-color: #50BCDF;
-            color: white;
-            text-align: center;
-            padding: 1em 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="visaul.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 </head>
 <body>
     <div class="header">
-        <h1>Kibana 데이터 시각화 - 타이타닉</h1>
+        <h1>Kibana 데이터 시각화</h1>
+        <h3>탑승 항구 및 티켓 별 객실 등급, 요금 분석</h3>
     </div>
     <div class="container">
+        <div class="map-container">
+            <h1 class="map_header">타이타닉 이동경로</h1>
+            <div id="map"></div>
+        </div>
         <div class="iframe-container">
-            <iframe src="http://localhost:5601/goto/b0293be401ac5383a1d08d06ae119b42" height="600" width="800"></iframe>
+            <iframe src="http://localhost:5602/goto/c7497680-4af8-11ef-bbfd-b1ad0c7f1bb0" height="600" width="800"></iframe>
         </div>
     </div>
     <div class="footer">
-        <p>© 2024 Your Company. All rights reserved.</p>
+        <p>© 2024 WooriFisa. All rights reserved.</p>
+        <div class="team">
+            <p>팀원 : </p>
+            <a href="https://github.com/yyyeun">허예은</a>
+            <a href="https://github.com/cshharry">조성현</a>
+            <a href="https://github.com/Been980804">이현빈</a>
+            <a href="https://github.com/leesj000603">이승준</a>
+            <img src="github_logo.png" class="github_logo">
+        </div>
     </div>
 </body>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+    // Initialize the map
+    var map = L.map('map').setView([45, -30], 3);
+        // Add a tile layer to the map
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+// Define the coordinates for the key locations
+var locations = [        ["Southampton", 50.9097, -1.4043],
+    ["Cherbourg", 49.6355, -1.6221],
+    ["Queenstown (Cobh)", 51.8503, -8.2975],
+    ["Iceberg Collision", 41.7325, -49.9469],
+    ["New York", 40.7128, -74.0060]
+];
+// Add markers for each location
+for (var i = 0; i < locations.length; i++) {
+    L.marker([locations[i][1], locations[i][2]]).addTo(map)
+        .bindPopup(locations[i][0])
+        .openPopup();
+}
+// Define the route as a polyline
+var latlngs = [        [50.9097, -1.4043],
+    [49.6355, -1.6221],
+    [51.8503, -8.2975],
+    [41.7325, -49.9469],
+    [40.7128, -74.0060]
+];
+// Add the route to the map
+var polyline = L.polyline(latlngs, {color: 'blue'}).addTo(map);
+// Zoom the map to the polyline
+map.fitBounds(polyline.getBounds());
+</script>
 </html>
 
 
