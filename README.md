@@ -1,4 +1,26 @@
 # WooriFISA Week3 미니프로젝트 : ELK Stack 구축을 통한 Titanic 데이터 시각화
+
+<details>
+  <summary>목차</summary>  
+  
+  - [수행 과제](#notebook-수행-과제)
+  - [팀원](#raising_hand-팀원)
+  - [실습환경](#실습환경)
+  - [MySQL + ELK](#floppy_disk-mysql--elk)
+    - [MySQL DB-Connector 설치](#mysql-db-connector-설치)
+    - [Logstash 설정](#logstash-설정)
+    - [Logstash 실행](#logstash-실행)
+  - [시각화](#bar_chart-시각화)
+  - [트러블슈팅](#hammer-트러블슈팅)
+    - [Kibana 대시보드 공유](#kibana-대시보드-공유)
+    - [JDBC_driver 읽기 권한](#jdbc_driver-읽기-권한)
+    - [Timezone error](#timezone-error)
+    - [conf파일의 filter 충돌](#conf파일의-filter-충돌)
+      
+</details>
+
+
+
 ## :notebook: 수행 과제
 - MySQL + ELK 연동
 - Titanic 데이터 분석 및 시각화
