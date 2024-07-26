@@ -182,5 +182,5 @@ path.config : /etc/logstash/single_conf
 - pipeline.id: pipeline2
   path.config: "/etc/logstash/conf.d/pipeline2.conf"
 ```
-
+<br>
 ## 회고
