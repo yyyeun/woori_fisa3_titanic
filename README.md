@@ -3,10 +3,14 @@
 - MySQL + ELK 연동
 - Titanic 데이터 분석 및 시각화
 
+<br/>
+
 ## :raising_hand: 팀원
 |<img src="https://github.com/leesj000603.png" width="80">|<img src="https://github.com/been980804.png" width="80">|<img src="https://github.com/cshharry.png" width="80">|<img src="https://github.com/yyyeun.png" width="80">|
 |:---:|:---:|:---:|:---:|
 |[이승준](https://github.com/leesj000603)|[이현빈](https://github.com/been980804)|[조성현](https://github.com/cshharry)|[허예은](https://github.com/yyyeun)|
+
+<br/>
 
 ## :floppy_disk: MySQL + ELK
 ### MySQL DB-Connector 설치
@@ -55,10 +59,15 @@ output {
 ```bash
 $ sudo /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/mysql_logstash.conf
 ```
+
 <br/>
 
 ## :bar_chart: 시각화
 
+[시각화 아이디어 회의록](https://flower-polyanthus-3b1.notion.site/2024-07-25-be9bf47d5ae64f7885795db54d581d04?pvs=4)
+
 <br/>
 
 ## :hammer: 트러블슈팅
+### Kibana 대시보드 공유
+- VirtualBox 네트워크 포트포워딩 수정 : localhost를 호스트 OS의 IP로 지정
