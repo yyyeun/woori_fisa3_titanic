@@ -92,6 +92,151 @@ $ sudo /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/mysql_logstash.c
   <img width="70%" src="https://github.com/user-attachments/assets/2b659345-00ab-4405-a8d7-5d16564be511">
 </p>
 
+<details>
+  <summary>Kibana Dev Tools에서 전처리 수행</summary>  
+  
+  ```bash
+  POST /titanic_index/_update_by_query
+{
+  "script": {
+    "source": "ctx._source.embarked = 'Ireland'",
+    "lang": "painless"
+  },
+  "query": {
+    "match": {
+      "embarked": "Q"
+    }
+  }
+}
+
+POST /titanic_index/_update_by_query
+{
+  "script": {
+    "source": "ctx._source.embarked = 'France'",
+    "lang": "painless"
+  },
+  "query": {
+    "match": {
+      "embarked": "C"
+    }
+  }
+}
+
+POST /titanic_index/_update_by_query
+{
+  "script": {
+    "source": "ctx._source.embarked = 'UK'",
+    "lang": "painless"
+  },
+  "query": {
+    "match": {
+      "embarked": "S"
+    }
+  }
+}
+  ```
+
+  ```bash
+GET titanic_index/_count
+
+# 인덱스 복제
+POST _reindex
+{
+  "source": {
+    "index": "titanic_index"
+  },
+  "dest": {
+    "index": "titanic_new"
+  }
+}
+
+GET titanic_new/_count
+
+# 새로운 필드 지정 : ticket_startWith
+## ticket이 문자로 시작 -> str
+## ticket이 숫자로 시작 -> num
+POST /titanic_new/_update_by_query
+{
+  "script": {
+    "source": """
+      if (ctx._source.ticket != null) {
+        if (ctx._source.ticket =~ /^[a-zA-Z].*/) {
+          ctx._source.ticket_startWith = 'str';
+        } else if (ctx._source.ticket =~ /^[0-9].*/) {
+          ctx._source.ticket_startWith = 'num';
+        }
+      }
+    """
+  },
+  "query": {
+    "exists": {
+      "field": "ticket"
+    }
+  }
+}
+
+# 특정 문자로 시작하는 ticket 분리
+POST /titanic_new/_update_by_query
+{
+  "script": {
+    "source": """
+      if (ctx._source.ticket != null) {
+        String ticketUpper = ctx._source.ticket.toUpperCase();
+
+        if (ticketUpper.startsWith("A")) 
+        {
+          ctx._source.ticket_startWith = 'A';
+        } 
+        else if (ticketUpper.startsWith("CA") || ticketUpper.startsWith("C.A")) 
+        {
+          ctx._source.ticket_startWith = 'C.A.';
+        } 
+        else if (ticketUpper.startsWith("PC")) 
+        {
+          ctx._source.ticket_startWith = 'PC';
+        }
+        else if (ticketUpper.startsWith("S.O")) 
+        {
+          ctx._source.ticket_startWith = 'S.O.';
+        }
+        else if (ticketUpper.startsWith("F.C")) 
+        {
+          ctx._source.ticket_startWith = 'F.C.';
+        }
+        else if (ticketUpper.startsWith("S.C") || ticketUpper.startsWith("SC")) 
+        {
+          ctx._source.ticket_startWith = 'SC';
+        }
+        else if (ticketUpper.startsWith("STON"))
+        {
+          ctx._source.ticket_startWith = 'STON';
+        }
+        else if (ticketUpper.startsWith("SOTON"))
+        {
+          ctx._source.ticket_startWith = 'SOTON';
+        }
+        else if (ticketUpper.startsWith("W"))
+        {
+          ctx._source.ticket_startWith = 'W';
+        }
+        else if (ctx._source.ticket =~ /^[a-zA-Z].*/) 
+        {
+          ctx._source.ticket_startWith = 'Others';
+        }
+      }
+    """
+  },
+  "query": {
+    "exists": {
+      "field": "ticket"
+    }
+  }
+}
+
+  ```
+
+</details>
+
 [시각화 아이디어 회의록](https://flower-polyanthus-3b1.notion.site/2024-07-25-be9bf47d5ae64f7885795db54d581d04?pvs=4)
 
 <br/>
