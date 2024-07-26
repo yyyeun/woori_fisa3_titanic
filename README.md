@@ -17,6 +17,8 @@
 :dolphin: MySQL 8.0.37 
 :book: elk stack 7.11.1
 
+![alt text](image.png)
+
 ## :floppy_disk: MySQL + ELK
 ### MySQL DB-Connector 설치
 ```bash
