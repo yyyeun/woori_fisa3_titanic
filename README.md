@@ -46,7 +46,7 @@ input {
 output {
   elasticsearch {
     hosts => ["http://localhost:9200"]
-    index => "titanic_index"
+    index => "(index명)"
   }
 }
 ```
