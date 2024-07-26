@@ -101,6 +101,7 @@ $ sudo /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/mysql_logstash.c
 - VirtualBox 네트워크 포트포워딩 수정 : localhost를 호스트 OS의 IP로 지정
 
 <hr/>
+
 ### JDBC_driver 읽기 권한
 ```
 Error: unable to load /home/username/lib/mysql-connector-java-8.0.18.jar from :jdbc_driver_library, 
